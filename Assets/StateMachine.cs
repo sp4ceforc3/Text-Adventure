@@ -10,6 +10,7 @@ public class StateMachine : MonoBehaviour
 {
     // This is a parent object that contains your entire menu panel
     [SerializeField] GameObject menu;
+    [SerializeField] TextMeshProUGUI WalthroughText;
 
     // These need to be created in your Scene. storyText will be the main text element
     [SerializeField] TextMeshProUGUI storyText;
