@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;   // This contains Image, Slider and the legacy Text
 using TMPro;            // This contains TextMeshProUGUI, which you should use for text
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 // Define all of your states (or 'rooms') here
 // None is just a default state that was added so that the previous room can be set to nothing in the beginning
@@ -14,6 +15,8 @@ public class StateMachine : MonoBehaviour
     // This is a parent object that contains your entire menu panel
     [SerializeField] GameObject menu;
     [SerializeField] GameObject WalkthroughText;
+    [SerializeField] GameObject mainMenuUI;
+    [SerializeField] GameObject gameUI;
 
     // These need to be created in your Scene. storyText will be the main text element
     [SerializeField] TextMeshProUGUI storyText;
@@ -22,6 +25,8 @@ public class StateMachine : MonoBehaviour
     [SerializeField] TextMeshProUGUI choiceAText;
     [SerializeField] TextMeshProUGUI choiceBText;
     [SerializeField] TextMeshProUGUI choiceCText;
+    [SerializeField] TextMeshProUGUI title;
+    [SerializeField] TextMeshProUGUI startButton;
     
     [SerializeField] AudioSource bgmSrc;    
     [SerializeField] AudioSource sfxSrc; 
@@ -33,7 +38,6 @@ public class StateMachine : MonoBehaviour
     State currentState;
     State previousState;
 
-    AudioSource audioSource;
 
     // These are the 'conditions' mentioned in the exercise
     bool hasKey = false;
@@ -41,10 +45,9 @@ public class StateMachine : MonoBehaviour
 
     void Start()
     {
-        currentState = State.tavern;   // Our entry state will be 'Bed'
+        currentState = State.None;
         previousState = State.None; // There's no previous state yet
 
-        audioSource = (AudioSource) FindObjectOfType(typeof(AudioSource));
         DisplayState();
     }
 
@@ -52,6 +55,16 @@ public class StateMachine : MonoBehaviour
     public void ShowMenu() => menu.SetActive(!menu.activeSelf);
     public void ShowWalkthrough() => WalkthroughText.SetActive(!WalkthroughText.activeSelf);
     public void changeVolume() => mixer.SetFloat("Master", audioSlider.value);
+    
+    public void backToMainClick(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void startClick(){
+        sfxSrc.PlayOneShot(sfxSrc.clip);
+        gameUI.SetActive(true);
+        mainMenuUI.SetActive(false);
+        currentState = State.tavern;
+    }
 
     // This function is just for changing the texts, images and music. The logic for our state machine is in SelectChoice()
     // You can show different texts in the same state using the condition and previousState variables
