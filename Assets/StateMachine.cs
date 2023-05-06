@@ -6,7 +6,7 @@ using TMPro;            // This contains TextMeshProUGUI, which you should use f
 // None is just a default state that was added so that the previous room can be set to nothing in the beginning
 public enum State { None, Bed, LivingRoom, Outside }
 
-public class GameManager : MonoBehaviour
+public class StateMachine : MonoBehaviour
 {
     // This is a parent object that contains your entire menu panel
     [SerializeField] GameObject menu;
