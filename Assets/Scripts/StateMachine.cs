@@ -27,6 +27,9 @@ public class StateMachine : MonoBehaviour
     [SerializeField] TextMeshProUGUI choiceCText;
     [SerializeField] TextMeshProUGUI title;
     [SerializeField] TextMeshProUGUI startButton;
+
+    // Background Sprite
+    [SerializeField] SpriteRenderer background;
     
     [SerializeField] AudioSource bgmSrc;    
     [SerializeField] AudioSource sfxSrc; 
@@ -43,11 +46,10 @@ public class StateMachine : MonoBehaviour
     bool hasKey = false;
     int sleepCounter = 0;
 
-    void Start()
-    {
+    // called at first frame
+    void Start() {
         currentState = State.None;
         previousState = State.None; // There's no previous state yet
-
         DisplayState();
     }
 
@@ -56,41 +58,46 @@ public class StateMachine : MonoBehaviour
     public void ShowWalkthrough() => WalkthroughText.SetActive(!WalkthroughText.activeSelf);
     public void changeVolume() => mixer.SetFloat("Master", audioSlider.value);
     
-    public void backToMainClick(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    public void startClick(){
+    // Reload Scene / Restart Game
+    public void backToMainClick() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    public void startClick() {
         sfxSrc.PlayOneShot(sfxSrc.clip);
         gameUI.SetActive(true);
         mainMenuUI.SetActive(false);
         currentState = State.tavern;
+        DisplayState();
     }
 
     // This function is just for changing the texts, images and music. The logic for our state machine is in SelectChoice()
     // You can show different texts in the same state using the condition and previousState variables
-    void DisplayState()
-    {
-        switch (currentState)
-        {
+    void DisplayState() {
+        switch (currentState) {
             case State.tavern:
-                storyText.text = previousState == State.tavern ? $"You sleep more, total sleep: {sleepCounter}" : "In bedroom";
-                choiceAText.text = "Go to house";
-                choiceBText.text = "Sleep more";
-                choiceCText.text = "";
+                storyText.text      = previousState == State.tavern ? $"You sleep more, total sleep: {sleepCounter}" : "In bedroom";
+                choiceAText.text    = "Go to house";
+                choiceBText.text    = "Sleep more";
+                choiceCText.text    = "";
+                background.sprite   = Resources.Load<Sprite>("AI/StableDiffusion/tavern/00021-1123229113");
                 break;
             case State.dungeon_entrance:
-                storyText.text = hasKey ? "In House, you have the key" : "In House, need key";
-                choiceAText.text = "Back to bed";
-                choiceBText.text = "Go outside";
-                choiceCText.text = hasKey ? "" : "Collect key";
+                storyText.text      = hasKey ? "In House, you have the key" : "In House, need key";
+                choiceAText.text    = "Back to bed";
+                choiceBText.text    = "Go outside";
+                choiceCText.text    = hasKey ? "" : "Collect key";
+                background.sprite   = Resources.Load<Sprite>("AI/StableDiffusion/dungeon-entrance/00004-736294144");
                 break;
             case State.dragon_lair:
-                storyText.text = "Outside";
-                choiceAText.text = "Back to title";
-                choiceBText.text = "";
-                choiceCText.text = "";
+                storyText.text      = "Outside";
+                choiceAText.text    = "Back to title";
+                choiceBText.text    = "";
+                choiceCText.text    = "";
+                background.sprite   = Resources.Load<Sprite>("AI/StableDiffusion/dragons-lair/00018-665087056");
                 break;
             default:
+                // "None" state is equal to our main menu state 
+                // Fallback / Error is main menu too
+                background.sprite   = Resources.Load<Sprite>("AI/StableDiffusion/main-menu/00032-903667890");
                 break;
         }
 
