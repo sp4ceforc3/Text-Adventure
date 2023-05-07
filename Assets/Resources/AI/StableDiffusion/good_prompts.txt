@@ -1,0 +1,11 @@
+## Scene 1 Prompts:
+
+inside medieval tavern, , matte painting, highly detailed, dynamic lighting, cinematic, realism, realistic, photo real, sunset, detailed, high contrast, denoised, centered, michael whelan
+
+## Scene 2 Prompts:
+
+mystic and dangeours Dungeon Entrance from outside, , matte painting, highly detailed, dynamic lighting, cinematic, realism, realistic, photo real, sunset, detailed, high contrast, denoised, centered,  Jeff Easley 
+
+### Scene: Dragon Lair
+
+dragon lair, mystic dragon, european dragon, colorful, fantasy art, photo realistic painting, 3d rendered, unreal engine 4, highly detailed, dynamic lighting, cinematic, realism, hyper realistic, photo real, detailed, sunset, high contrast, denoised, centered, Cinematography, cinematic, hyper-realistic, photo real, cinematic composition, highly detailed, vray, 8k render
