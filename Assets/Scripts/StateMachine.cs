@@ -104,7 +104,7 @@ public class StateMachine : MonoBehaviour
     // You can show different texts in the same state using the condition and previousState variables
     void DisplayState() {
         
-        // reset to athomspheric audio
+        // reset to atmospheric audio
         PlayBgmMusic(athmosphereClip);
 
         switch (currentState) 
@@ -149,7 +149,7 @@ public class StateMachine : MonoBehaviour
             case State.dragon_death:
                 PlayBgmMusic(deadClip);
                 if (!trySneak) {
-                    storyText.text  = "You tried to fight a dragon with your bare hands. This wold have been an epic story, but the dragon did not really care about fist bumps and roasted you.";
+                    storyText.text  = "You tried to fight a dragon with your bare hands. This would have been an epic story, but the dragon did not really care about fist bumps and roasted you.";
                     background.sprite = Resources.Load<Sprite>("AI/StableDiffusion/dragon_death/00002-2924447476");
                 }
                 else {
@@ -164,7 +164,7 @@ public class StateMachine : MonoBehaviour
             //** Goblin Outpost
 
             case State.goblin_outpost:
-                storyText.text      = "You travel through the area together with the adventurers in search for a goblin nest. Not long after yoout departure you find an outpost.";
+                storyText.text      = "You travel through the area together with the adventurers in search for a goblin nest. Not long after your departure you find an outpost.";
                 choiceAText.text    = "Attack the goblins head-on.";
                 choiceBText.text    = "Sneak around and try to avoid them." ;
                 choiceCText.text    = "Try to negotiate with the goblins";
@@ -197,13 +197,13 @@ public class StateMachine : MonoBehaviour
                 if (!hasTorch)
                     storyText.text = "For sparing their lives the goblins show you a crypt in which lays more gold as one can spent in a life. But maybe they fooled you.";
                 else
-                    storyText.text = "In search for something usefull you went back to the crypt's entrance. Thanks to he torch you see something shiny on the ground... A key!";
+                    storyText.text = "In search for something useful you went back to the crypt's entrance. Thanks to he torch you see something shiny on the ground... A key!";
                 
                 if (hasKey)
                     storyText.text = "You took the key! Looks like it would match an old door?";
 
-                choiceAText.text   = "Go and see whats beyond the door.";
-                choiceBText.text    = visitedChampers ? "Go to chambers." : "Invstigate engravings on wall.";
+                choiceAText.text   = "Go and see whats beyond the door.";               
+                choiceBText.text    = visitedChampers ? "Go to chambers." : "Investigate engravings on wall.";
                 choiceCText.text    = hasTorch && !hasKey ? "Take the key" : "";
                 background.sprite   = Resources.Load<Sprite>("AI/StableDiffusion/crypt/00012-1040397683");
                 break;
@@ -213,11 +213,11 @@ public class StateMachine : MonoBehaviour
             case State.crypt_chambers:
                 PlayBgmMusic(cryptClip);
                 if (!hasTorch) {
-                    storyText.text   = "You accidentlay activated a mechanism which revealed a path downstairs. It leads you to chamber with a closed door";
+                    storyText.text   = "You accidentally activated a mechanism which revealed a path downstairs. It leads you to chambers with a closed door";
                     choiceBText.text = hasKey ? "Open door" : "Take Torch";
                 }
                 else {
-                    storyText.text   = "Nice! Now you can see everthing in the dark crypts.";
+                    storyText.text   = "Nice! Now you can see everything in the dark crypts.";
                     choiceBText.text = hasKey ? "Open door" : "";
                 }
 
@@ -235,7 +235,7 @@ public class StateMachine : MonoBehaviour
                 PlayBgmMusic(treasureClip);
                 if (previousState == State.dragon_lair) {
                     storyText.text      = "You defeated the dragon with one blow of the sword. It's power is really questionable."
-                                        + "But why should you care. The dragon has hoarded more than enpugh gold for 3 lives.";
+                                        + "But why should you care. The dragon has hoarded more than enough gold for 3 lives.";
                     choiceAText.text    = "";
                     choiceBText.text    = "";
                     choiceCText.text    = "";
@@ -253,7 +253,7 @@ public class StateMachine : MonoBehaviour
             case State.gluttony:
                 PlayBgmMusic(deadClip);
                 storyText.text = "Although low on money you ordered more and more meals. The other tavern visitors began to question how much one can eat."
-                               + "And whether you have enough money to pay for it. At least the first question was answered the moment you choked on you 42th meal and died a miserable death."
+                               + "And whether you have enough money to pay for it. At least the first question was answered the moment you choked on your 42nd meal and died a miserable death."
                                + "At least you did not need to pay for it!";
                 choiceAText.text    = "";
                 choiceBText.text    = "";

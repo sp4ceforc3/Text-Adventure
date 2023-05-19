@@ -404,7 +404,7 @@ MonoBehaviour:
   m_text: "Rich Boy(1):  approach adventurers -> negotiate with goblins -> Investigate
     wall -> take torch -> go back -> grab key -> investigate wall -> open door \nRich
     Boy(2): talk to bartender ->  search surroundings -> go inside -> fight dragon
-    head-on\nGoblin Slayer: approach adventurers -> attack goblins head-on -> attack
+    head-on\nGoblin Slave: approach adventurers -> attack goblins head-on -> attack
     goblins head-on\nSecret Ending Gluttony: Eat 42 times in tavern\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
